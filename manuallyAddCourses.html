@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Lesson</title>
+
+    <!-- Firebase SDKs for Modular v9+ -->
+  <script type="module" crossorigin src="/deploy/assets/addCourses-BP2P2jrq.js"></script>
+  <link rel="modulepreload" crossorigin href="/deploy/assets/modulepreload-polyfill-B5Qt9EMX.js">
+</head>
+
+<body>
+    <form id="lessonForm">
+
+        <!-- Course Form -->
+
+        <h1> Insert Course </h1>
+        <label>Course ID:</label>
+        <input type="text" id="courseID" name="title" required><br><br>
+
+        <label>Course Title:</label>
+        <input type="text" id="courseTitle" name="title" required><br><br>
+
+        <label>Course Description:</label><br>
+        <textarea id="courseDescription" name="description" required></textarea><br><br>
+
+        <label>Lesson List (comma-separated URLs):</label><br>
+        <input type="text" id="lessonList" name="readingList"><br><br>
+
+        <label>Total Credit Points</label><br>
+        <input type="number" id="totalCreditPoints" name="prerequisites"><br><br>
+
+        <label>Course Progress:</label><br>
+        <input type="number" id="courseProgress" name="assignments"><br><br>
+
+        <label>Supervisor</label>
+        <select id="courseSupervisor" name="status">
+            <option value="Dr Test Test">Dr Test Test</option>
+            <option value="Dr Chong">Dr Chong</option>
+        </select><br><br>
+
+        <label>Status:</label>
+        <select id="status" name="status">
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+        </select><br><br>
+
+        <button type="submitCourse">Create Course</button>
+    </form>
+</body>
+
+</html>

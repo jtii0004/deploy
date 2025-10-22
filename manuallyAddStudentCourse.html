@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Student Course</title>
+
+  <!-- Firebase SDKs for Modular v9+ -->
+  <script type="module" crossorigin src="/deploy/assets/addStudentCourse-C3KcVhs8.js"></script>
+  <link rel="modulepreload" crossorigin href="/deploy/assets/modulepreload-polyfill-B5Qt9EMX.js">
+</head>
+
+<body>
+  <form id="studentCourseForm">
+    <h1>Add Student Course</h1>
+
+    <label>Student ID:</label><br>
+    <input type="text" id="studentID" required><br><br>
+
+    <label>Course ID:</label><br>
+    <input type="text" id="courseID" required><br><br>
+
+    <label>Course Completion (%):</label><br>
+    <input type="number" id="courseCompletion" min="0" max="100" step="1" required><br><br>
+
+    <button type="submit">Add Student Course</button>
+  </form>
+</body>
+
+</html>
