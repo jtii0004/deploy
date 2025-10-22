@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Lesson</title>
+
+    <!-- Firebase SDKs for Modular v9+ -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBkQNEyRcMLYQ6tgUni9hh9JN1evZpo0iM",
+            authDomain: "weshowagile.firebaseapp.com",
+            projectId: "weshowagile",
+            storageBucket: "weshowagile.firebasestorage.app",
+            messagingSenderId: "324942220550",
+            appId: "1:324942220550:web:779f62ae8323962e4fe287",
+            measurementId: "G-9B5LVZ9MST"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Form submission handler
+        document.getElementById("lessonForm").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Course data to save to Firestore
+
+            const courseData = {
+                courseID: document.getElementById("courseID").value,
+                courseTitle: document.getElementById("courseTitle").value,
+                courseDescription: document.getElementById("courseDescription").value,
+                courseLessons: document.getElementById("lessonList").value.split(",").map(s => s.trim()).filter(Boolean),
+                courseTotalCreditpoint: Number.parseInt(document.getElementById("totalCreditPoints").value),
+                courseProgress: document.getElementById("courseProgress").value,
+                courseSupervisor: document.getElementById("courseSupervisor").value,
+                courseCreateDate: new Date().toISOString(),
+                courseUpdateDate: new Date().toISOString(),
+            };
+
+            try {
+                // Save lesson data to Firestore
+                const docRef = doc(db, "courses", new Date().getTime().toString());  // Unique document ID based on timestamp
+                await setDoc(docRef, courseData);
+
+                console.log("Lesson created successfully:", courseData);
+
+                // Redirect to another page after success
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error("Error creating lesson:", error);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <form id="lessonForm">
+
+        <!-- Course Form -->
+
+        <h1> Insert Course </h1>
+        <label>Course ID:</label>
+        <input type="text" id="courseID" name="title" required><br><br>
+
+        <label>Course Title:</label>
+        <input type="text" id="courseTitle" name="title" required><br><br>
+
+        <label>Course Description:</label><br>
+        <textarea id="courseDescription" name="description" required></textarea><br><br>
+
+        <label>Lesson List (comma-separated URLs):</label><br>
+        <input type="text" id="lessonList" name="readingList"><br><br>
+
+        <label>Total Credit Points</label><br>
+        <input type="number" id="totalCreditPoints" name="prerequisites"><br><br>
+
+        <label>Course Progress:</label><br>
+        <input type="number" id="courseProgress" name="assignments"><br><br>
+
+        <label>Supervisor</label>
+        <select id="courseSupervisor" name="status">
+            <option value="Dr Test Test">Dr Test Test</option>
+            <option value="Dr Chong">Dr Chong</option>
+        </select><br><br>
+
+        <label>Status:</label>
+        <select id="status" name="status">
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+        </select><br><br>
+
+        <button type="submitCourse">Create Course</button>
+    </form>
+</body>
+
+</html>

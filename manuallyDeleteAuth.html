@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Delete Firebase Auth User</title>
+  </head>
+  <body>
+    <h2>Delete Firebase Auth User</h2>
+
+    <input type="text" id="uidInput" placeholder="Enter UID to delete" />
+    <button id="deleteBtn">Delete User</button>
+
+    <script type="module">
+      // ✅ Change this path to wherever your function file is
+      // Example: if the file is in "js/firebaseFunctions.js"
+      // then write:
+      // import { deleteFirebaseAuthUser } from "./js/firebaseFunctions.js";
+      import { deleteFirebaseAuthUser } from "./Learn_Sphere/src/components/deleteFirebaseAuthUser.js";
+
+      document.getElementById("deleteBtn").addEventListener("click", async () => {
+        const uid = document.getElementById("uidInput").value.trim();
+
+        if (!uid) {
+          alert("Please enter a UID!");
+          return;
+        }
+
+        try {
+          const result = await deleteFirebaseAuthUser(uid);
+          console.log("✅ User deleted successfully:", result);
+          alert("User deleted successfully!");
+        } catch (error) {
+          console.error("❌ Error deleting user:", error);
+          alert("Error deleting user: " + error.message);
+        }
+      });
+    </script>
+  </body>
+</html>

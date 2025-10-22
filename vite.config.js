@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
-const REPO = 'MA_THURSDAY5PM_TEAM3'
+const REPO = 'deploy'
 
 export default defineConfig({
   base: `/${REPO}/`,

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 import { signInUser } from "../components/manageUsers";
 
 import styles from "./LoginForm.module.css";
@@ -105,7 +106,12 @@ function LoginForm({ showError, setShowError }) {
         <div className={styles.infoFooter}>
           <Button type="submit" label="Login" isEnabled={isEnabled}/>
           <div className={styles.noAccount}>
-            No account?<a href="/MA_THURSDAY5PM_TEAM3/reg" isEnabled={isEnabled}> Sign Up</a>
+            No account?<span
+              onClick={() => navigate("/login")}
+              style={{ cursor: "pointer", color: "#007bff" }}
+            >
+              Sign Up
+            </span>
           </div>
         </div>
       </div>

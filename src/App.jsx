@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter basename="/MA_THURSDAY5PM_TEAM3">
+    <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/reg" element={<RegisterPage />} />
@@ -19,7 +19,7 @@ function App() {
         <Route path="/byebye" element={<ByeBye />} />
         <Route path="/focus" element={<FocusPage />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 export default App;

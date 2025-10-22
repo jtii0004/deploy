@@ -180,7 +180,13 @@ function RegisterForm({ selectedRole }) {
         <Button type="submit" label="Register" isEnabled={isEnabled}/>
         <ErrorMessage messages={errorMessages} />
         <div className={styles.haveAccount}>
-          Have an account?<a href="/MA_THURSDAY5PM_TEAM3/login" isEnabled={isEnabled}> Login Here</a>
+          Have an account?
+          <span
+            onClick={() => navigate("/login")}
+            style={{ cursor: "pointer", color: "#007bff" }}
+          >
+            Login Here
+          </span>
         </div>
       </div>
     </form>

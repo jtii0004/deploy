@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Student Course</title>
+
+  <!-- Firebase SDKs for Modular v9+ -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBkQNEyRcMLYQ6tgUni9hh9JN1evZpo0iM",
+      authDomain: "weshowagile.firebaseapp.com",
+      projectId: "weshowagile",
+      storageBucket: "weshowagile.firebasestorage.app",
+      messagingSenderId: "324942220550",
+      appId: "1:324942220550:web:779f62ae8323962e4fe287",
+      measurementId: "G-9B5LVZ9MST"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Form submission handler
+    document.getElementById("studentCourseForm").addEventListener("submit", async function (event) {
+      event.preventDefault(); // Prevent page reload
+
+      // Student course data
+      const studentCourseData = {
+        student_course_studentId: document.getElementById("studentID").value,
+        student_course_courseId: document.getElementById("courseID").value,
+        student_course_courseCompletion: Number.parseFloat(document.getElementById("courseCompletion").value),
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        // Save to Firestore
+        const docRef = await addDoc(collection(db, "student_course"), studentCourseData);
+
+        console.log("✅ Student_Course added with ID:", docRef.id);
+        alert("Student course entry created successfully!");
+
+        // Optional: redirect
+        // window.location.href = "index.html";
+
+      } catch (error) {
+        console.error("❌ Error adding student course:", error);
+        alert("Error adding student course. Check console.");
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <form id="studentCourseForm">
+    <h1>Add Student Course</h1>
+
+    <label>Student ID:</label><br>
+    <input type="text" id="studentID" required><br><br>
+
+    <label>Course ID:</label><br>
+    <input type="text" id="courseID" required><br><br>
+
+    <label>Course Completion (%):</label><br>
+    <input type="number" id="courseCompletion" min="0" max="100" step="1" required><br><br>
+
+    <button type="submit">Add Student Course</button>
+  </form>
+</body>
+
+</html>
