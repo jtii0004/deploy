@@ -28,6 +28,32 @@ import LessonCard from "../../components/clickable/LessonCard";
 import SingleButtonMessageBox from "../../components/display/SingleButtonMessageBox";
 import MarkStudentModal from "../../components/display/MarkStudentModal";
 
+const parseDateSafe = (value) => {
+  if (!value) return null;
+
+  const directDate = new Date(value);
+  if (!Number.isNaN(directDate.getTime())) {
+    return directDate;
+  }
+
+  if (typeof value === "string" && value.includes("/")) {
+    const parts = value.split("/").map((part) => part.trim());
+    if (parts.length === 3) {
+      const [day, month, year] = parts;
+      const isoString = `${year.padStart(4, "0")}-${month.padStart(
+        2,
+        "0"
+      )}-${day.padStart(2, "0")}`;
+      const fallbackDate = new Date(isoString);
+      if (!Number.isNaN(fallbackDate.getTime())) {
+        return fallbackDate;
+      }
+    }
+  }
+
+  return null;
+};
+
 function ViewClassroom({ userData }) {
   let navigate = useNavigate();
 
@@ -41,6 +67,47 @@ function ViewClassroom({ userData }) {
   const [markConfirmation, setMarkConfirmation] = useState(null);
   const [showMessageBox, setShowMessageBox] = useState(false);
   const [message, setMessage] = useState("");
+
+  const isClassroomOngoing = React.useMemo(() => {
+    if (!classroom) {
+      return false;
+    }
+
+    const status = (classroom.classroom_status || "").toLowerCase();
+    if (!["published", "ongoing"].includes(status)) {
+      return false;
+    }
+
+    const startDate =
+      parseDateSafe(classroom.classroom_startDate) ||
+      parseDateSafe(classroom.startDate);
+    const endDate =
+      parseDateSafe(classroom.classroom_endDate) ||
+      parseDateSafe(classroom.endDate);
+
+    const now = new Date();
+    const hasStarted = startDate ? now >= startDate : status === "ongoing";
+    const notEnded = endDate ? now <= endDate : true;
+
+    return hasStarted && notEnded;
+  }, [classroom]);
+
+  const canEditClassroom = React.useMemo(() => {
+    if (!userData) {
+      return false;
+    }
+
+    if (userData.role === "student") {
+      return false;
+    }
+
+    const status = (classroom?.classroom_status || "").toLowerCase();
+    if (status === "archived") {
+      return false;
+    }
+
+    return !isClassroomOngoing;
+  }, [userData, classroom, isClassroomOngoing]);
 
   useEffect(() => {
     //Runs on the first render only
@@ -193,29 +260,20 @@ function ViewClassroom({ userData }) {
   const handleEdit = () => {
     if (!classroom) return;
 
-    if (classroom.classroom_status === "Archived") {
+    const status = (classroom.classroom_status || "").toLowerCase();
+
+    if (status === "archived") {
       setMessage("This classroom is archived. Editing is not allowed.");
       setShowMessageBox(true);
       return;
     }
 
-    if (classroom.classroom_status === "Published") {
-      const parseDate = (str) => {
-        if (!str) return null;
-        const [day, month, year] = str.split("/").map((s) => s.trim());
-        return new Date(`${year}-${month}-${day}`);
-      };
-
-      const now = new Date();
-      const endDate = parseDate(classroom.classroom_endDate);
-
-      console.log("now:", now, "endDate:", endDate);
-      if (now < endDate) {
-        setMessage("This classroom has already ended. Editing is not allowed.");
-        setShowMessageBox(true);
-        return;
-      }
+    if (isClassroomOngoing) {
+      setMessage("This classroom is currently ongoing. Editing is not allowed.");
+      setShowMessageBox(true);
+      return;
     }
+
     console.log("Editing classroom with id: " + id);
     navigate(`/home/classrooms/${id}/edit`, { state: { classroom } });
   };
@@ -346,9 +404,7 @@ function ViewClassroom({ userData }) {
           <div className={styles.courseStatus}>
             {classroom != null ? classroom.classroom_status : "null"}
           </div>
-          {userData != null &&
-            userData.role != "student" &&
-            classroom?.classroom_status !== "Archived" && (
+          {canEditClassroom && (
             <button
               className={styles.smallButton}
               style={{ background: "#beb2a4", marginLeft: "auto" }}
