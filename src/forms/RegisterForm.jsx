@@ -181,12 +181,13 @@ function RegisterForm({ selectedRole }) {
         <ErrorMessage messages={errorMessages} />
         <div className={styles.haveAccount}>
           Have an account?
-          <span
+          <button
+            type="button"
+            className={styles.switchLink}
             onClick={() => navigate("/login")}
-            style={{ cursor: "pointer", color: "#007bff" }}
           >
             Login Here
-          </span>
+          </button>
         </div>
       </div>
     </form>

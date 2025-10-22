@@ -101,13 +101,35 @@
     align-self: self-start;
 }
 
-.noAccount a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    margin-left: 5px;
+.switchLink {
+    margin-left: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.noAccount a:hover {
-    text-decoration: underline;
+.switchLink:hover {
+    background: rgba(255, 255, 255, 0.32);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.switchLink:active {
+    transform: scale(0.97);
+}
+
+.switchLink:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
 }

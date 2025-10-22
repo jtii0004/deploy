@@ -106,12 +106,14 @@ function LoginForm({ showError, setShowError }) {
         <div className={styles.infoFooter}>
           <Button type="submit" label="Login" isEnabled={isEnabled}/>
           <div className={styles.noAccount}>
-            No account?<span
+            No account?
+            <button
+              type="button"
+              className={styles.switchLink}
               onClick={() => navigate("/reg")}
-              style={{ cursor: "pointer", color: "#007bff" }}
             >
               Sign Up
-            </span>
+            </button>
           </div>
         </div>
       </div>

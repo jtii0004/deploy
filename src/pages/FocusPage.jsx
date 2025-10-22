@@ -1,10 +1,15 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import styles from "./FocusPage.module.css";
 
 import Button from "../components/clickable/Button";
 import GrowthSection from "../components/functional/GrowthSection";
+import {
+  clearFocusSession,
+  readFocusSession,
+  writeFocusSession,
+} from "../utils/focusSessionStorage";
 
 const confirmationPhrase = "I really really really want to give up my focus";
 
@@ -23,6 +28,7 @@ function FocusPage() {
   const [isRunning, setIsRunning] = useState(true);
   const [tasks, setTasks] = useState([]);
   const [taskInput, setTaskInput] = useState("");
+  const [sessionDeadline, setSessionDeadline] = useState(null);
   const [showGiveUpPrompt, setShowGiveUpPrompt] = useState(false);
   const [confirmationInput, setConfirmationInput] = useState("");
   const [confirmationError, setConfirmationError] = useState("");
@@ -31,18 +37,22 @@ function FocusPage() {
     String(Math.max(focusMinutes, 1))
   );
   const [durationError, setDurationError] = useState("");
+  const hasInitializedRef = useRef(false);
 
-  const resetSession = useCallback((seconds) => {
+  const startSession = useCallback((seconds, tasksToLoad = []) => {
     const safeSeconds = Math.max(0, Math.floor(seconds));
     const fallbackMinutes = Math.max(
       1,
       Math.floor(safeSeconds / 60) || 0
     );
+    const sanitizedTasks = Array.isArray(tasksToLoad) ? tasksToLoad : [];
+    const now = Date.now();
+    const deadline = now + safeSeconds * 1000;
 
     setTotalSeconds(safeSeconds);
     setRemainingTime(safeSeconds);
     setIsRunning(true);
-    setTasks([]);
+    setTasks(sanitizedTasks);
     setTaskInput("");
     setShowGiveUpPrompt(false);
     setConfirmationInput("");
@@ -50,7 +60,42 @@ function FocusPage() {
     setShowCompletionPrompt(false);
     setDurationError("");
     setNewDurationInput(String(fallbackMinutes));
+    setSessionDeadline(deadline);
+
+    writeFocusSession({
+      status: "active",
+      totalSeconds: safeSeconds,
+      deadline,
+      tasks: sanitizedTasks,
+    });
   }, []);
+
+  const resumeSession = useCallback(
+    (totalSecondsValue, remainingSecondsValue, deadline, storedTasks = []) => {
+      const safeTotal = Math.max(0, Math.floor(totalSecondsValue));
+      const safeRemaining = Math.max(
+        0,
+        Math.min(safeTotal, Math.floor(remainingSecondsValue))
+      );
+      const sanitizedTasks = Array.isArray(storedTasks) ? storedTasks : [];
+
+      setTotalSeconds(safeTotal);
+      setRemainingTime(safeRemaining);
+      setIsRunning(safeRemaining > 0);
+      setTasks(sanitizedTasks);
+      setTaskInput("");
+      setShowGiveUpPrompt(false);
+      setConfirmationInput("");
+      setConfirmationError("");
+      setShowCompletionPrompt(false);
+      setDurationError("");
+      setNewDurationInput(
+        String(Math.max(1, Math.floor(safeTotal / 60) || 1))
+      );
+      setSessionDeadline(safeRemaining > 0 ? deadline : null);
+    },
+    []
+  );
 
   const progress =
     totalSeconds > 0
@@ -73,8 +118,108 @@ function FocusPage() {
   }, [isRunning, remainingTime]);
 
   useEffect(() => {
-    resetSession(initialSeconds);
-  }, [initialSeconds, resetSession]);
+    if (hasInitializedRef.current) {
+      return;
+    }
+    hasInitializedRef.current = true;
+
+    if (typeof window === "undefined") {
+      startSession(initialSeconds);
+      return;
+    }
+
+    const stored = readFocusSession();
+
+    if (stored) {
+      const sanitizedTasks = Array.isArray(stored.tasks) ? stored.tasks : [];
+
+      if (
+        stored.status === "active" &&
+        typeof stored.totalSeconds === "number" &&
+        Number.isFinite(stored.totalSeconds) &&
+        typeof stored.deadline === "number" &&
+        Number.isFinite(stored.deadline)
+      ) {
+        const now = Date.now();
+        const safeTotal = Math.max(0, Math.floor(stored.totalSeconds));
+        const remaining = Math.max(
+          0,
+          Math.floor((stored.deadline - now) / 1000)
+        );
+
+        if (remaining > 0) {
+          resumeSession(safeTotal, remaining, stored.deadline, sanitizedTasks);
+          return;
+        }
+
+        const completedPayload = {
+          status: "completed",
+          totalSeconds: safeTotal,
+          deadline: stored.deadline,
+          tasks: sanitizedTasks,
+        };
+        writeFocusSession(completedPayload);
+
+        setTotalSeconds(safeTotal);
+        setRemainingTime(0);
+        setIsRunning(false);
+        setTasks(sanitizedTasks);
+        setTaskInput("");
+        setShowGiveUpPrompt(false);
+        setConfirmationInput("");
+        setConfirmationError("");
+        setShowCompletionPrompt(true);
+        setDurationError("");
+        setNewDurationInput(
+          String(Math.max(1, Math.floor(safeTotal / 60) || 1))
+        );
+        setSessionDeadline(null);
+        return;
+      }
+
+      if (stored.status === "completed") {
+        const storedTotalSeconds = Number.isFinite(stored.totalSeconds)
+          ? Math.floor(stored.totalSeconds)
+          : initialSeconds;
+        const safeTotal = Math.max(0, storedTotalSeconds);
+
+        setTotalSeconds(safeTotal);
+        setRemainingTime(0);
+        setIsRunning(false);
+        setTasks(sanitizedTasks);
+        setTaskInput("");
+        setShowGiveUpPrompt(false);
+        setConfirmationInput("");
+        setConfirmationError("");
+        setShowCompletionPrompt(true);
+        setDurationError("");
+        setNewDurationInput(
+          String(Math.max(1, Math.floor(safeTotal / 60) || 1))
+        );
+        setSessionDeadline(null);
+        return;
+      }
+    }
+
+    startSession(initialSeconds);
+  }, [initialSeconds, resumeSession, startSession]);
+
+  useEffect(() => {
+    if (
+      sessionDeadline === null ||
+      !Number.isFinite(sessionDeadline) ||
+      totalSeconds <= 0
+    ) {
+      return;
+    }
+
+    writeFocusSession({
+      status: "active",
+      totalSeconds,
+      deadline: sessionDeadline,
+      tasks,
+    });
+  }, [sessionDeadline, tasks, totalSeconds]);
 
   useEffect(() => {
     if (remainingTime === 0 && totalSeconds > 0) {
@@ -85,8 +230,20 @@ function FocusPage() {
         String(Math.max(1, Math.floor(totalSeconds / 60)))
       );
       setShowCompletionPrompt(true);
+      setSessionDeadline(null);
+
+      const completedDeadline = Number.isFinite(sessionDeadline)
+        ? sessionDeadline
+        : Date.now();
+
+      writeFocusSession({
+        status: "completed",
+        totalSeconds,
+        deadline: completedDeadline,
+        tasks,
+      });
     }
-  }, [remainingTime, totalSeconds]);
+  }, [remainingTime, sessionDeadline, tasks, totalSeconds]);
 
   const handleTaskSubmit = (event) => {
     event.preventDefault();
@@ -117,6 +274,9 @@ function FocusPage() {
   const handleGiveUpConfirm = () => {
     if (confirmationInput.trim() === confirmationPhrase) {
       setShowGiveUpPrompt(false);
+      setIsRunning(false);
+      setSessionDeadline(null);
+      clearFocusSession();
       navigate("/home");
       return;
     }
@@ -128,6 +288,8 @@ function FocusPage() {
 
   const handleCompletionHome = () => {
     setShowCompletionPrompt(false);
+    setSessionDeadline(null);
+    clearFocusSession();
     navigate("/home");
   };
 
@@ -152,7 +314,8 @@ function FocusPage() {
     const minutes = parsedDuration;
     const nextSeconds = minutes * 60;
 
-    resetSession(nextSeconds);
+    setShowCompletionPrompt(false);
+    startSession(nextSeconds);
 
     if (minutes !== focusMinutes) {
       navigate(`/focus?duration=${minutes}`, { replace: true });
