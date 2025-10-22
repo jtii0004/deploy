@@ -16,7 +16,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        testing: resolve(__dirname, 'testing.html'),
+        // testing: resolve(__dirname, 'testing.html'),
         addCourses: resolve(__dirname, 'manuallyAddCourses.html'),
         addStudentCourse: resolve(__dirname, 'manuallyAddStudentCourse.html'),
         deleteAuth: resolve(__dirname, 'manuallyDeleteAuth.html'),

@@ -107,7 +107,7 @@ function LoginForm({ showError, setShowError }) {
           <Button type="submit" label="Login" isEnabled={isEnabled}/>
           <div className={styles.noAccount}>
             No account?<span
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/reg")}
               style={{ cursor: "pointer", color: "#007bff" }}
             >
               Sign Up

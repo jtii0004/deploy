@@ -6,7 +6,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ByeBye from "./pages/byebye";
 import FocusPage from "./pages/FocusPage";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
