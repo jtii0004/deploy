@@ -407,7 +407,7 @@ export async function handleStudentLessonMarking(studentID, classroom, lessonID,
 {
   if (studentID != null && lessonID != null)
   {
-  if (action == "Unmark")
+  if (action == "unmark")
   {
       updateStudentLessonCompletion(studentID, lessonID, "unchecked");
       updateStudentLessonPassFail(studentID, lessonID, "unchecked");
