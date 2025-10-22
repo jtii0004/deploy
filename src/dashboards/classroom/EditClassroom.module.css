@@ -1,0 +1,245 @@
+﻿.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.infoTitle {
+    margin: 0;
+    font-size: 30px;
+    color: black;
+}
+
+.infoScroll {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.infoScroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.infoScroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.infoScroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+}
+
+.infoScroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 20px;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.input {
+    font-size: 16px;
+    padding: 9px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.sectionRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitle {
+    margin: 0;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.78);
+}
+
+.studentControlRow {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.studentInputWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.addStudentButton {
+    background: #ffa21f;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.addStudentButton:hover {
+    filter: brightness(0.95);
+    transform: translateY(-1px);
+}
+
+.suggestionRow {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.select {
+    font-size: 16px;
+    padding: 9px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.emptyMessage {
+    margin: 0;
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.studentList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.studentItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.removeStudentButton {
+    background: rgba(137, 115, 81, 0.9);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.removeStudentButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.infoFooter {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.footerActions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+}
+
+.backButton:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.backIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.errorArea {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.errorMessage {
+    margin: 0;
+    color: #bb2d3b;
+    font-size: 14px;
+}
+
+.placeholder {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.justTitle {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    text-align: left;
+    padding: 10 0px;
+}

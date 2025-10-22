@@ -1,0 +1,71 @@
+.lessonCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: var(--card-background, linear-gradient(135deg, #c7a3ff, #a58bff));
+    border-radius: 40px;
+    max-height: 120px;
+    width: 500px;
+    padding: 15px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    transition: 0.2s ease;
+}
+
+
+.lessonCard:hover,
+.lessonCard:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 4px 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.lessonIcon {
+    width: 30%;
+    height: auto;
+}
+
+.lessonIcon img {
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.lessonInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    align-items: first baseline;
+    text-align: left;
+}
+
+.lessonId {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    opacity: 0.5;
+}
+
+.lessonTitle {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    opacity: 1.0;
+}
+
+.lessonCreditPoint {
+    margin: 0;
+    font-size: 15px;
+    color: black;
+    opacity: 0.5;
+}
+
+.lessonInstructor {
+    margin-top: auto;
+    margin: 0;
+    font-size: 18px;
+    font-style: italic;
+    color: black;
+    opacity: 0.7;
+}

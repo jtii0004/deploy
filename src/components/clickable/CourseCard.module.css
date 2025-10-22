@@ -1,0 +1,90 @@
+.lessonCard {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-background, linear-gradient(135deg, #c7a3ff, #a58bff));
+    border-radius: 40px;
+    height: auto;
+    width: 500px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: 0.2s ease;
+}
+
+.lessonCard:hover,
+.lessonCard:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 4px 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.lessonInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    align-items: first baseline;
+    text-align: left;
+    padding: 15px;
+    gap: 10px;
+}
+
+.lessonId {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    opacity: 0.5;
+}
+
+.lessonTitle {
+    flex: 1;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    opacity: 1.0;
+}
+
+.lessonCreditPoint {
+    margin: 0;
+    font-size: 15px;
+    color: black;
+    opacity: 0.5;
+}
+
+.lessonInstructor {
+    margin-top: auto;
+    margin: 0;
+    font-size: 18px;
+    font-style: italic;
+    color: black;
+    opacity: 0.7;
+}
+
+.lessonExtraArea {
+    width: 100%;
+    height: 16px;
+    background-color: var(--card-muted, rgba(0, 0, 0, 0.1));
+    position: relative;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--card-accent, #e14c4c);
+    transition: width 0.3s ease;
+}
+
+.smallButton {
+    background: #ffa21f;
+    padding: 5px;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    width: auto;
+    height: 50px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 40px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}

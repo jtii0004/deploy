@@ -1,0 +1,87 @@
+﻿.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.infoTitle {
+    margin: 0;
+    font-size: 30px;
+    color: black;
+}
+
+.infoScroll {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.infoScroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.infoScroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.infoScroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+}
+
+.infoScroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.footerActions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+}
+
+.backButton:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.backIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.justTitle {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    text-align: left;
+    padding: 10 0px;
+}

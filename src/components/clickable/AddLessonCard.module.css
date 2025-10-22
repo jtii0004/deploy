@@ -1,0 +1,40 @@
+.lessonCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: rgb(199, 163, 255);
+    border-radius: 40px;
+    max-height: 120px;
+    width: 500px;
+    padding: 15px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0, 5);
+}
+
+.lessonIcon {
+    width: 30%;
+    height: auto;
+}
+
+.lessonIcon img {
+    width: 100px;
+    height: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    opacity: 0.6;
+}
+
+.lessonInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    align-items: first baseline;
+    text-align: left;
+}
+
+.lessonTitle {
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+    opacity: 1.0;
+}

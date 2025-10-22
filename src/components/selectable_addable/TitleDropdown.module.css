@@ -1,0 +1,33 @@
+.formRow {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.label {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: black;
+  text-align: left;
+}
+
+.select {
+  position: relative;
+  padding: 10px 12px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: #B2C8CF;
+  align-items: center;
+  color: black;
+}
+
+.select:focus {
+  outline: none;
+  border-color: transparent;
+}
+
+.option {
+  color: #6c757d;
+  font-size: 18px;
+}

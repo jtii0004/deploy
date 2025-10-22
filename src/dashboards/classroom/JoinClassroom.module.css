@@ -1,0 +1,79 @@
+﻿.joinCoursePage {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.infoTitle {
+    margin: 0;
+    font-size: 30px;
+    color: black;
+}
+
+.infoScroll {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.infoScroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.infoScroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.infoScroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+}
+
+.infoScroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 0 10px 0;
+    overflow-y: auto;
+    height: inherit;
+}
+
+.pageFooter {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+}
+
+.backButton:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.backIcon {
+    width: 24px;
+    height: 24px;
+}

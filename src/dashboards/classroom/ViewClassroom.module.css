@@ -1,0 +1,352 @@
+﻿.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.infoHeader {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.smallRow {
+  text-align: left;
+  font-size: 25px;
+  color: black;
+  opacity: 0.6;
+}
+
+.bigRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  text-align: left;
+}
+
+.courseTitle {
+  font-size: 35px;
+  color: black;
+  font-weight: bold;
+}
+
+.courseStatus {
+  flex: 1;
+  text-align: left;
+  margin-left: 25px;
+  color: black;
+  opacity: 0.5;
+  font-size: 18px;
+
+
+}
+
+.smallButton {
+  background: #897351;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  width: 100px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.smallButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  outline: none;
+  border-color: transparent;
+}
+
+.smallButton:focus {
+  outline: none;
+  border-color: transparent;
+}
+
+.cancelEnrollButton {
+  background: #ffa21f;
+  padding: 12px 18px;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: auto;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cancelEnrollButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  outline: none;
+  border-color: transparent;
+}
+
+.infoScroll {
+  flex: 1 1 auto;
+  margin-top: 10px;
+  padding-right: 10px;
+  overflow-y: auto;
+  min-height: 0;
+  /* height: 0; */
+  -webkit-overflow-scrolling: touch;
+
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+}
+
+.infoScroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.infoScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.infoScroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+
+.infoScroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 0 0 10px 0;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 0 10px 0;
+  /* overflow-y: auto;
+    height: inherit; */
+}
+
+.pageFooter {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.backButton:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.backIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.justTitle {
+  /* width: 20%; */
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  text-align: left;
+  padding: 10 0px;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 12px 24px -18px rgba(0, 0, 0, 0.25);
+}
+
+.studentTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.studentTable thead {
+  background: linear-gradient(
+    90deg,
+    rgba(226, 232, 240, 0.9),
+    rgba(226, 232, 240, 0.6)
+  );
+}
+
+.studentTable th,
+.studentTable td {
+  padding: 14px 18px;
+  text-align: center;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.studentTable th {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.studentTable tbody tr {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.studentTable tbody tr:nth-child(even) {
+  background: rgba(226, 232, 240, 0.3);
+}
+
+.tableActions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tokenField {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  border-radius: 18px;
+  border: none;
+  background-color: #e4cea5;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.token {
+  font: 20px;
+  color: black;
+}
+
+.tokenStatusAvailable {
+  font: 20px;
+  color: rgb(38, 144, 237);
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.tokenStatusUsed {
+  font: 20px;
+  color: red;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.markButton {
+  background: #ceab93;
+  border: none;
+  color: black;
+  opacity: 0.6;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.markButton:hover {
+  background: blue;
+}
+
+
+.removeButton {
+  background: #ceab93;
+  border: none;
+  color: black;
+  opacity: 0.6;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.removeButton:hover {
+  background: #ad8b73;
+}
+
+.approveButton {
+  background: #1cf054;
+  border: none;
+  color: black;
+  opacity: 0.6;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.approveButton:hover {
+  background: #23ff39;
+}
+
+.rejectButton {
+  background: #ff2727;
+  border: none;
+  color: black;
+  opacity: 0.6;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.rejectButton:hover {
+  background: #bc1d1d;
+}
+
+.simpleText {
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  /* font-weight: bold; */
+  text-align: center;
+  padding: 10 0px;
+}

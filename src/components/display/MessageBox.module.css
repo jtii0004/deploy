@@ -1,0 +1,75 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: auto;
+    padding: 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: #f7f5de;
+    gap: 10px;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    justify-content: center;
+}
+
+.messageArea {
+    flex: 1;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    justify-content: center;
+    padding: 20px;
+}
+
+.buttonArea {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.smallButton {
+    background: #58171b;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    width: 100px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.smallButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    outline: none;
+    border-color: transparent;
+}
+
+.smallButton:focus {
+    outline: none;
+    border-color: transparent;
+}

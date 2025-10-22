@@ -1,0 +1,102 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.infoHeader {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.infoTitle {
+  margin: 0;
+  font-size: 30px;
+  color: black;
+}
+
+.infoScroll {
+  flex: 1 1 auto;
+  margin-top: 10px;
+  padding-right: 10px;
+  overflow-y: auto;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 95%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+}
+
+.infoScroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.infoScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.infoScroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+
+.infoScroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 0 0 10px 0;
+}
+
+.infoFooter {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+
+.smallButton {
+  background: #897351;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  width: 200px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.smallButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  outline: none;
+  border-color: transparent;
+}
+
+.smallButton:focus {
+  outline: none;
+}
+
+
+.justTitle {
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  text-align: left;
+  padding: 10 0px;
+}

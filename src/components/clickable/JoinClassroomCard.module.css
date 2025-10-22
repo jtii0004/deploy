@@ -1,0 +1,76 @@
+.lessonCard {
+    display: flex;
+    flex-direction: column;
+    background: rgb(199, 182, 122);
+    border-radius: 40px;
+    height: 280px;
+    width: 350px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.lessonInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+    text-align: left;
+}
+
+.lessonId {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    opacity: 0.5;
+}
+
+.lessonTitle {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    opacity: 1.0;
+}
+
+.lessonCreditPoint {
+    margin: 0;
+    font-size: 15px;
+    color: black;
+    opacity: 0.5;
+}
+
+.lessonInstructor {
+    margin: 0;
+    margin-top: auto;
+    font-size: 18px;
+    font-style: italic;
+    color: black;
+    opacity: 0.7;
+}
+
+.lessonExtraArea {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: rgb(220, 204, 148);
+    padding: 15px;
+    height: 30%;
+}
+
+.smallButton {
+    background: #ffa21f;
+    padding: 5px 20px;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.smallButton:hover {
+    filter: brightness(0.95);
+}

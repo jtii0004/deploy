@@ -1,0 +1,9 @@
+.errorBox {
+    color: red;
+    font-size: 14px;
+    margin: 8px 0;
+    padding: 8px;
+    border: 1px solid red;
+    border-radius: 6px;
+    background: #ffe6e6;
+}

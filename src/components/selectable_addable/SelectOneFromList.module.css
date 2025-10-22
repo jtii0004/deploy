@@ -1,0 +1,43 @@
+.wholeFiled {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: black;
+    text-align: left;
+}
+
+.selectingPart {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding: 10px 12px;
+    font-size: 15px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: #B2C8CF;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selectingPart select {
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    background: #B2C8CF;
+    justify-content: space-between;
+    outline: none;
+    box-shadow: none;
+}
+
+.selectingPart select option {
+    width: 100%;
+    font-size: 18px;
+    color: black;
+    border: transparent;
+    outline: 0;
+    background: #B2C8CF;
+}
